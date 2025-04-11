@@ -3,55 +3,68 @@ title: Backup
 description: Allow creating backups of container and core installations.
 ha_category:
   - Other
+  - Sensor
 ha_release: 2022.4
 ha_quality_scale: internal
 ha_domain: backup
 ha_codeowners:
   - '@home-assistant/core'
 ha_iot_class: Calculated
+ha_platforms:
+  - sensor
 ha_integration_type: system
+related:
+  - docs: /common-tasks/general/#backups
+    title: Backups
+  - docs: /common-tasks/general/#defining-backup-locations
+    title: Backup locations
+  - docs: /getting-started/onboarding/
+    title: Recover from backup during onboarding
+  - docs: /more-info/backup-emergency-kit/
+    title: backup emergency kit
 ---
 
-The Backup integration allow you to create and download backups for your Home Assistant Core and Home Assistant Container installations. This backup file can be used if you migrate to Home Assistant Operating System.
+The **Backup** {% term integration %} is used by all [installation types](/installation/#advanced-installation-methods) to create and restore backups.
 
-<div class="note">
+To learn how to create and restore a backup, refer to the backup section under [common tasks](/common-tasks/general/#backups).
 
-If you use Home Assistant Operating System or Home Assistant Supervised, [back up functionality is already built-in](/common-tasks/os/#backups).
+## Actions
 
-</div>
-
-This integration is by default enabled, unless you've disabled or removed the [`default_config:`](/integrations/default_config/) line from your configuration. If that is the case, the following example shows you how to enable this integration manually:
-
-```yaml
-# Example configuration.yaml entry
-backup:
-```
-
-You need to restart Home Assistant after you add this configuration.
-When it has started up again you will find a new "Backup" entry in the main menu (**Settings** -> **System** -> **Backup**).
-
-The backup files are stored in a new "backups" subdirectory in the root of your configuration directory.
-
-## Services
-
-The backup integration exposes a service that can be used to automate the backup
+The **Backup** integration exposes actions that can be used to automate the backup
 process.
 
-### Service {% my developer_call_service service="backup.create" %}
+However, it is no longer needed to create your own automation. Follow these steps to [set up an automatic backup from the UI](/common-tasks/general/#setting-up-an-automatic-backup-process).
 
-The {% my developer_call_service service="backup.create" %} service can be used
-to create a backup for your Home Assistant instance. 
+### Action backup.create_automatic
 
-The service has no additional options or parameters.
+The {% my developer_call_service service="backup.create_automatic" %} action can be used
+to create a backup of your Home Assistant instance, using the same settings as those used
+by [automatic backups](/common-tasks/general/#setting-up-an-automatic-backup-process).
 
-Example service call:
+This action can be called to create backups with pre-defined settings at a more flexible
+schedule than the schedule which can be configured for automatic backups.
+
+The action has no additional options or parameters.
+
+Example action:
 
 ```yaml
-service: backup.create
+action: backup.create_automatic
 ```
 
-## Example: Backing up every night at 3:00 AM
+### Action backup.create
 
+The {% my developer_call_service service="backup.create" %} action can be used
+to create a backup of your Home Assistant instance.
+This action is only available in [core and container installations](/installation/#advanced-installation-methods).
+The action has no additional options or parameters.
+Example action:
+
+```yaml
+action: backup.create
+```
+
+### Example: Backing up every night at 3:00 AM
 
 This is a YAML example for an automation that initiate a backup every night
 at 3 AM:
@@ -59,10 +72,35 @@ at 3 AM:
 ```yaml
 automation:
   - alias: "Backup Home Assistant every night at 3 AM"
-    trigger:
-      platform: time
-      at: "03:00:00"
-    action:
-      alias: "Create backup now"
-      service: backup.create
+    triggers:
+      - trigger: time
+        at: "03:00:00"
+    actions:
+      - alias: "Create backup now"
+        action: backup.create
 ```
+
+## Restoring a backup
+
+To restore a backup, follow the steps described in [Restoring a backup](/common-tasks/general/#restoring-a-backup).
+
+## Sensors
+
+The **Backup** {% term integration %} provides several sensors.
+
+### Backup Manager State
+
+The current state of the backup system. Possible states are:
+
+- Idle
+- Creating a backup
+- Receiving a backup
+- Restoring a backup
+
+### Next scheduled automatic backup
+
+The timestamp of the next scheduled automatic backup.
+
+### Last successful automatic backup
+
+The timestamp of the last successful automatic backup.

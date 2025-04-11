@@ -3,7 +3,6 @@ title: Generic Camera
 description: Instructions on how to integrate IP cameras within Home Assistant.
 ha_category:
   - Camera
-logo: home-assistant.png
 ha_release: pre 0.7
 ha_iot_class: Local Push
 ha_domain: generic
@@ -13,7 +12,7 @@ ha_platforms:
 ha_codeowners:
   - '@davet2001'
 ha_config_flow: true
-ha_integration_type: integration
+ha_integration_type: device
 ---
 
 The `generic` camera platform allows you to integrate any IP camera or other URL into Home Assistant. Templates can be used to generate the URLs on the fly.
@@ -60,11 +59,11 @@ Use wallclock as timestamps:
 
 In this section, you find some real-life examples of how to use this camera platform.
 
-### Weather graph from yr.no
+### Weather graph from USA National Weather Service
 
-- Still Image URL: `https://www.yr.no/en/content/1-72837/meteogram.svg`
+You can display a GIF from the web as a still image.
 
-Instructions on how to locate the SVG for your location are available at [developer.yr.no](https://developer.yr.no/doc/guides/deprecating-old-widgets/)
+- Still Image URL: `https://radar.weather.gov/ridge/standard/CONUS_0.gif`
 
 ### Local image
 
@@ -86,12 +85,12 @@ To access a camera which is only available via HTTP, you must turn off SSL verif
 
 ### Live stream
 
-To access a camera that has both a snapshot and live stream URL, utilizing the [stream](/integrations/stream/) component.
+To access a camera that has both a snapshot and live stream URL, utilizing the [stream](/integrations/stream/) integration.
 
 - Still Image URL: `http://194.218.96.92/jpg/image.jpg`
 - Stream Source: `rtsp://user:pass@194.218.96.92:554`
 
-If a camera only has a live stream URL and no snapshot URL, the [stream](/integrations/stream/) component can also generate still images from the live stream URL.
+If a camera only has a live stream URL and no snapshot URL, the [stream](/integrations/stream/) integration can also generate still images from the live stream URL.
 
 - Stream Source: `rtsp://user:pass@194.218.96.92:554`
 
