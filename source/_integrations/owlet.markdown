@@ -54,12 +54,13 @@ Password:
 - **Battery Percentage** - The sock's remaining battery percentage. Enabled by default.
 - **Battery Remaining** - The sock's remaining battery in minutes. Enabled by default.
 - **O2 Saturation 10 Minute Average** - The sock wearer's average Oxygen Saturation over the last 10 minutes as a percentage. Enabled by default.
+- **Movement** - The sock's current movement value. Disabled by default
+- **Movement bucket** - The sock's current movement bucket. Disabled by default
 - **Heart Rate** - The sock wearer's current heart rate in bpm. Enabled by default.
 - **Oxygen Saturation** - The sock wearer's current Oxygen Saturation as a percentage. Enabled by default.
 - **Skin Temperature** - The sock wearer's current skin temperature in celsius. Enabled by default.
 - **Signal strength** - The sock's current signal strength to the base. Enabled by default.
-- **Movement** - The sock's current movement value. Disabled by default
-- **Movement bucket** - The sock's current movement bucket. Disabled by default
+- **Sleep state** - The sock wearer's current sleep state, options are: "Uknown", "Awake", "Light sleep", "Deep sleep". Enabled by default.
 
 ## Data updates
 
