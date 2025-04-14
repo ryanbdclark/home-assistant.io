@@ -112,3 +112,35 @@ To send a notification when the heart rate sensor is low the below automation co
 ```
 
 {% endraw %}
+
+## Troubleshooting
+
+### Can’t set up the device
+
+#### Symptom: “Entered credentials are incorrect”
+
+When trying to set up the integration, the form shows the message “Entered credentials are incorrect”.
+
+##### Description
+
+This means that either your email and password are incorrect or you are attempting to login to the wrong region. The Owlet API only returns a generic error about incorrect login credentials so it's hard to say if it's the email/password combination or the region that is incorrect.
+
+##### Resolution
+
+Make sure that the email and password entered is correct. 
+Make sure that the region selected is correct for your account
+
+
+#### Symptom: “No devices found”
+
+When trying to set up the integration, the form shows the message “No devices found”.
+
+##### Description
+
+This means that the authentication to the Owlet was succesful however no valid devices were found on your account.
+
+##### Resolution
+
+Only v2/v3/dream socks are supported, ensure your device is one of these.
+Make sure the account logged in has the device assigned to it.
+
